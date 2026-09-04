@@ -1,0 +1,16 @@
+json
+{
+  "title": "Extended perinatal lead PBPK model: corrected implementation (Ko-CHENS / NOEMOC)",
+  "upload_type": "software",
+  "license": "MIT",
+  "version": "1.0.0",
+  "creators": [
+    {"name": "Kim, Ju Hee", "affiliation": "College of Nursing Science, Kyung Hee University, Seoul, Republic of Korea", "orcid": "0000-0001-6586-7244"},
+    {"name": "Seo, SungChul", "affiliation": "Department of Environmental & Chemical Engineering, Seokyeong University, Seoul, Republic of Korea"}
+  ],
+  "keywords": ["PBPK", "lead", "pregnancy", "lactation", "placental transfer", "Bayesian calibration"],
+  "description": "Python implementation of an extended perinatal PBPK model for lead spanning pregnancy through lactation, with grid-quadrature Bayesian calibration against the Ko-CHENS and NOEMOC birth cohorts. Accompanies the article submitted to Toxicology and Applied Pharmacology (TAAP-D-26-01261). Six implementation defects in the originally submitted code are documented and corrected; see README.",
+  "related_identifiers": [
+    {"relation": "isSupplementTo", "identifier": "PUT-ARTICLE-DOI-HERE", "scheme": "doi"}
+  ]
+}

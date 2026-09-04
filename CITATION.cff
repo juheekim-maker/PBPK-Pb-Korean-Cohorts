@@ -13,13 +13,13 @@ authors:
     affiliation: >-
       College of Nursing Science, Kyung Hee University, Seoul,
       Republic of Korea
-    orcid: 'https://orcid.org/PUT-ORCID-HERE'
+    orcid: 'https://orcid.org/0000-0001-6586-7244'
   - given-names: SungChul
     family-names: Seo
     affiliation: >-
       Department of Environmental & Chemical Engineering, School of
       Future Convergence, Seokyeong University, Seoul, Republic of Korea
-repository-code: 'https://github.com/PUT-ACCOUNT-HERE/perinatal-pb-pbpk'
+repository-code: 'https://github.com/juheekim-maker/PBPK-Pb-Korean-Cohorts'
 abstract: >-
   Python implementation of an extended perinatal physiologically based
   pharmacokinetic (PBPK) model for lead, spanning pregnancy through

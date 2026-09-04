@@ -1,38 +1,16 @@
 cff-version: 1.2.0
-title: >-
-  Extended perinatal lead PBPK model: corrected implementation
-  (Ko-CHENS / NOEMOC)
-message: >-
-  If you use this software, please cite both the software and the
-  associated article.
+title: "Extended perinatal lead PBPK model: corrected implementation (Ko-CHENS / NOEMOC)"
+message: "If you use this software, please cite both the software and the associated article."
 type: software
 authors:
-  - given-names: Ju Hee
-    family-names: Kim
-    email: juheekim@khu.ac.kr
-    affiliation: >-
-      College of Nursing Science, Kyung Hee University, Seoul,
-      Republic of Korea
-    orcid: 'https://orcid.org/0000-0001-6586-7244'
-  - given-names: SungChul
-    family-names: Seo
-    affiliation: >-
-      Department of Environmental & Chemical Engineering, School of
-      Future Convergence, Seokyeong University, Seoul, Republic of Korea
-repository-code: 'https://github.com/juheekim-maker/PBPK-Pb-Korean-Cohorts'
-abstract: >-
-  Python implementation of an extended perinatal physiologically based
-  pharmacokinetic (PBPK) model for lead, spanning pregnancy through
-  lactation, with grid-quadrature Bayesian calibration against two
-  Korean birth cohorts. Includes the corrections to the originally
-  submitted implementation documented in the README.
-keywords:
-  - PBPK
-  - lead
-  - pregnancy
-  - lactation
-  - placental transfer
-  - Bayesian calibration
+  - given-names: "Ju Hee"
+    family-names: "Kim"
+    email: "juheekim@khu.ac.kr"
+    affiliation: "College of Nursing Science, Kyung Hee University, Seoul, Republic of Korea"
+    orcid: "https://orcid.org/0000-0001-6586-7244"
+  - given-names: "SungChul"
+    family-names: "Seo"
+    affiliation: "Department of Environmental & Chemical Engineering, Seokyeong University, Seoul, Republic of Korea"
 license: MIT
-version: 1.0.0
-date-released: '2026-09-04'
+version: "1.0.1"
+date-released: "2026-09-04"

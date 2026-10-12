@@ -13,8 +13,10 @@ Accompanies the article submitted to *Toxicology and Applied Pharmacology*
 
 ```bash
 pip install -r requirements.txt
-python grid_build.py 600      # precompute predictions over the parameter grid
+python grid_build.py 600      # precompute predictions over the 4,992-node parameter grid
+python quadrature.py          # posterior by grid quadrature -> post.pkl
 python evaluate.py            # training / hold-out performance at the posterior mode
+python submodel2.py           # renal and lactational pathways
 ```
 
 `grid_build.py` takes a time budget in seconds and resumes where it left off, so it can be
@@ -27,24 +29,31 @@ run repeatedly until the grid is complete.
 | `pbpk2.py` | Sub-model 1 ODE system (4 states), physiology, fixed-step RK4 integrator, pre-pregnancy steady state |
 | `core.py` | Data loading, individual parameterisation, reverse dosimetry, performance metrics |
 | `grid_build.py` | Precomputes per-individual predictions across the parameter grid |
+| `quadrature.py` | Posterior evaluation by grid quadrature: marginals, credible intervals, joint mode |
 | `mcmc2.py` | Metropolis–Hastings cross-check on the grid surrogate |
+| `submodel2.py` | Renal and lactational pathways evaluated from the Sub-model 1 solution |
 | `evaluate.py` | Training / hold-out evaluation and MEM-PBPK BLUP |
+| `VARIABLES.md` | Variable dictionary: every state, parameter and function with units and defining expression |
 
 ## Model structure
 
-Two sequentially coupled sub-models sharing one maternal structure:
+This is a **reduced-form** physiologically based structure, not a full flow-limited whole-body
+PBPK model, and the distinction matters for how the output should be read. See `VARIABLES.md`
+section 10 for what is deliberately absent.
 
-- **Sub-model 1 (pregnancy)** — maternal blood/plasma, cortical and trabecular bone,
-  kidney, placenta and fetus. Placental transfer follows Fick's first law, driven by the
+- **Sub-model 1 (pregnancy)** — four states per individual: maternal blood, maternal cortical
+  bone, maternal trabecular bone, fetal blood. Bone formation and resorption are separate
+  fluxes and the pregnancy remodelling term acts on resorption. Renal elimination is a true
+  clearance inside the mass balance. Placental transfer follows Fick's first law, driven by the
   maternal–fetal plasma gradient and scaled by syncytiotrophoblast exchange area and the
-  inverse of diffusion path length.
-- **Sub-model 2 (lactation)** — the same maternal structure with placenta and fetus removed
-  and a mammary compartment added. Urinary and milk elimination are true clearances within
-  the maternal mass balance.
+  inverse of diffusion path length. There is no cardiac output term and no compartmental
+  blood-flow vector; maternal physiology enters through blood volume, haematocrit and GFR.
+- **Sub-model 2 (renal and lactational pathways)** — evaluated from the Sub-model 1 solution
+  rather than by integrating a postpartum ODE system. Renal clearance is inside the Sub-model 1
+  mass balance; milk Pb is obtained from maternal plasma by partition after the maternal
+  trajectory has been solved, so `P_c,milk` is conditional on that solution.
 
-The two are coupled through the complete maternal compartment burden vector at delivery,
-not through blood Pb alone, so total maternal Pb mass is conserved across the transition.
-Mass balance is verified at every time step (maximum relative error 9e-5).
+Mass balance is verified at every time step of Sub-model 1 (maximum relative error 9e-5).
 
 ## Six defects corrected relative to the originally submitted code
 
@@ -69,9 +78,10 @@ Mass balance is verified at every time step (maximum relative error 9e-5).
 
 ## Inference
 
-The posterior is evaluated by direct grid quadrature over 4,992 nodes
-(13 STBR x 24 CABR x 16 KD_pl), with the two observation-model standard deviations
-marginalised numerically at each node. With three structural parameters this is exact up to
+The posterior is evaluated by `quadrature.py` on a grid of 4,992 nodes
+(13 STBR x 24 CABR x 16 KD_pl; the KD_pl axis is log-spaced, so the quadrature weights are
+non-uniform), with the two observation-model standard deviations marginalised numerically at
+each node. With three structural parameters this is exact up to
 grid resolution and removes sampler convergence from consideration. A Metropolis–Hastings
 run (`mcmc2.py`) is retained as a cross-check; it reaches the same posterior mode but mixes
 poorly along the STBR–CABR ridge, which is itself evidence that those two parameters are

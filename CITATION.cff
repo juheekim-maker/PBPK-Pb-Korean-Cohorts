@@ -1,16 +1,39 @@
 cff-version: 1.2.0
-title: "Extended perinatal lead PBPK model: corrected implementation (Ko-CHENS / NOEMOC)"
-message: "If you use this software, please cite both the software and the associated article."
+title: >-
+  Extended perinatal lead PBPK model: corrected implementation
+  (Ko-CHENS / NOEMOC)
+message: >-
+  If you use this software, please cite both the software and the
+  associated article.
 type: software
 authors:
-  - given-names: "Ju Hee"
-    family-names: "Kim"
-    email: "juheekim@khu.ac.kr"
-    affiliation: "College of Nursing Science, Kyung Hee University, Seoul, Republic of Korea"
-    orcid: "https://orcid.org/0000-0001-6586-7244"
-  - given-names: "SungChul"
-    family-names: "Seo"
-    affiliation: "Department of Environmental & Chemical Engineering, Seokyeong University, Seoul, Republic of Korea"
+  - given-names: Ju Hee
+    family-names: Kim
+    email: juheekim@khu.ac.kr
+    affiliation: >-
+      College of Nursing Science, Kyung Hee University, Seoul,
+      Republic of Korea
+    orcid: 'https://orcid.org/0000-0001-6586-7244'
+  - given-names: SungChul
+    family-names: Seo
+    affiliation: >-
+      Department of Environmental & Chemical Engineering, School of
+      Future Convergence, Seokyeong University, Seoul, Republic of Korea
+repository-code: 'https://github.com/juheekim-maker/PBPK-Pb-Korean-Cohorts'
+abstract: >-
+  Python implementation of a reduced-form perinatal physiologically
+  based model for lead, with grid-quadrature Bayesian calibration
+  against two Korean birth cohorts. Version 1.1.0 adds the grid
+  quadrature routine, the renal and lactational module, a variable
+  dictionary (VARIABLES.md), and a parameter grid matching the
+  4,992 nodes described in the article.
+keywords:
+  - PBPK
+  - lead
+  - pregnancy
+  - lactation
+  - placental transfer
+  - Bayesian calibration
 license: MIT
-version: "1.0.1"
-date-released: "2026-09-04"
+version: 1.1.0
+date-released: '2026-10-12'
